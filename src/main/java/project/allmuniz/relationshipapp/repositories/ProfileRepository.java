@@ -1,7 +1,7 @@
 package project.allmuniz.relationshipapp.repositories;
 
-import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.JpaRepository;
+import project.allmuniz.relationshipapp.entities.ProfileEntity;
 
-public interface ProfileRepository extends JpaRepository<Profile, Long> {
+public interface ProfileRepository extends JpaRepository<ProfileEntity, Long> {
 }

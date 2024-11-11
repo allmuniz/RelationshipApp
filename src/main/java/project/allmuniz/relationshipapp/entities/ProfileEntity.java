@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import project.allmuniz.relationshipapp.dtos.ProfileRequestDto;
 
 import java.util.Date;
 
@@ -33,4 +34,14 @@ public class ProfileEntity {
     private String email;
     @Column(nullable = false)
     private String password;
+
+
+    public ProfileEntity(ProfileRequestDto profile) {
+        this.name= profile.name();
+        this.phone= profile.phone();
+        this.birthday= profile.birthday();
+        this.address= profile.address();
+        this.email= profile.email();
+        this.password= profile.password();
+    }
 }
