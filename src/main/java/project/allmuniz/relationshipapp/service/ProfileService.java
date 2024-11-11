@@ -8,6 +8,9 @@ import project.allmuniz.relationshipapp.dtos.ProfileResponseDto;
 import project.allmuniz.relationshipapp.entities.ProfileEntity;
 import project.allmuniz.relationshipapp.repositories.ProfileRepository;
 
+import java.time.LocalDate;
+import java.time.Period;
+
 @Service
 public class ProfileService {
 
@@ -18,8 +21,16 @@ public class ProfileService {
     }
 
     public ResponseEntity<ProfileResponseDto> createProfile(ProfileRequestDto profile) {
+        checkAge(profile.birthday());
         ProfileEntity saveProfile = new ProfileEntity(profile);
         profileRepository.save(saveProfile);
         return new ResponseEntity<>(new ProfileResponseDto(saveProfile.getName()), HttpStatus.CREATED);
+    }
+
+    public void checkAge(LocalDate birthDate) {
+        int age = Period.between(birthDate, LocalDate.now()).getYears();
+        if (age < 18) {
+            throw new IllegalArgumentException("A idade mínima é 18 anos.");
+        }
     }
 }

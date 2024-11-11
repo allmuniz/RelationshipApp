@@ -1,11 +1,11 @@
 package project.allmuniz.relationshipapp.dtos;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public record ProfileRequestDto(
         String name,
         String phone,
-        Date birthday,
+        LocalDate birthday,
         String address,
         String email,
         String password

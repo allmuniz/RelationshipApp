@@ -1,14 +1,14 @@
 package project.allmuniz.relationshipapp.entities;
 
-import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import project.allmuniz.relationshipapp.dtos.ProfileRequestDto;
+import project.allmuniz.relationshipapp.enums.StatusProfile;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @AllArgsConstructor
@@ -26,9 +26,12 @@ public class ProfileEntity {
     @Column(nullable = false)
     private String phone;
     @Column(nullable = false)
-    private Date birthday;
+    private LocalDate birthday;
     @Column(nullable = false)
     private String address;
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private StatusProfile status;
 
     @Column(unique = true, nullable = false)
     private String email;
@@ -43,5 +46,6 @@ public class ProfileEntity {
         this.address= profile.address();
         this.email= profile.email();
         this.password= profile.password();
+        this.status= StatusProfile.ACTIVE;
     }
 }
